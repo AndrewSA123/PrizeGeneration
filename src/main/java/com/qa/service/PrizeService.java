@@ -15,8 +15,8 @@ public class PrizeService implements IPrizeService {
 	PrizeRepository repo;
 
 	@Override
-	public String createPrize(String accountNumber) {
-		newPrize = new Prize(accountNumber, lt.checkLetter(accountNumber));
+	public String createPrize(Prize accountNumber) {
+		newPrize = new Prize(accountNumber.getAccountNumber(), lt.checkLetter(accountNumber.getAccountNumber()));
 		repo.createPrize(newPrize);
 		return PrizeConstants.CREATE_PRIZE;
 	}

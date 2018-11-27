@@ -6,24 +6,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.constants.PrizeConstants;
+import com.qa.persistence.domain.Prize;
 import com.qa.service.IPrizeService;
 
-@RequestMapping(path = PrizeConstants.BASE_ENDPOING)
-public class PrizeEndpoint implements IPrizeEndpoint {
+@RestController
+@RequestMapping("${base_endpoint}")
+public class PrizeEndpoint {
 
 	@Autowired
 	IPrizeService service;
 
-	@Override
-	@PostMapping(path = PrizeConstants.CREATE_ENDPOING)
-	public String createPrize(@RequestBody String accountNumber) {
+	@PostMapping("${create_endpoint}")
+	public String createPrize(@RequestBody Prize accountNumber) {
 		return service.createPrize(accountNumber);
 	}
 
-	@Override
-	@GetMapping(path = PrizeConstants.GET_ENDPOING)
+	@GetMapping("${get_endpoint}")
 	public String getPrize(@PathVariable("accountNumber") String accountNumber) {
 		return service.getPrize(accountNumber);
 	}
