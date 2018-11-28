@@ -8,11 +8,12 @@ import com.qa.persistence.repository.PrizeRepository;
 
 public class PrizeService implements IPrizeService {
 
-	LetterChecker lt = new LetterChecker();
-	Prize newPrize;
+	private LetterChecker lt = new LetterChecker();
+	private Prize newPrize;
+	private String prize;
 
 	@Autowired
-	PrizeRepository repo;
+	private PrizeRepository repo;
 
 	@Override
 	public String createPrize(Prize accountNumber) {
@@ -23,7 +24,8 @@ public class PrizeService implements IPrizeService {
 
 	@Override
 	public String getPrize(String accountNumber) {
-		return repo.getPrize(accountNumber);
+		prize = lt.checkLetter(accountNumber);
+		return prize;
 	}
 
 	public void setRepo(PrizeRepository repo) {
